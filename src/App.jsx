@@ -20,7 +20,7 @@ let textWithOptions = renderFormattedText(options , inputTxt);
 console.log(typeof textWithOptions);
 
   return (
-    <div className="flex flex-col items-center border w-full h-screen pt-2">
+    <div className="bg-zinc-800 flex flex-col items-center border w-full h-screen pt-2 gap-2 overflow-hidden">
       <Header
         inputTxt={inputTxt}
         setInputText={setInputText}
@@ -28,13 +28,13 @@ console.log(typeof textWithOptions);
         setOptions={setOptions}
         setShowSection={setShowSection}
       />
-      <div className="bg-black w-full h-full">
-        {showSection === 'main' && (
-          <MainLayout output={textWithOptions} setOptions={setOptions} />
-        )}
+      <div className="bg-zinc-950 w-full h-full">
+        {showSection === 'main' && <MainLayout output={textWithOptions} setOptions={setOptions} />}
         {showSection === 'about' && <About setShowSection={setShowSection} />}
         {showSection === 'extrasOptions' && <Extras setShowSection={setShowSection} />}
-        {showSection === 'testall' && <TestAll setShowSection={setShowSection} inputTxt={inputTxt} />}
+        {showSection === 'testall' && (
+          <TestAll setShowSection={setShowSection} inputTxt={inputTxt} />
+        )}
       </div>
     </div>
   );

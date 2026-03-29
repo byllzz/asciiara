@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function Filters({ filters, setFilters, setShowBtn }) {
   const handleSelectChange = e => {
@@ -14,18 +14,40 @@ export default function Filters({ filters, setFilters, setShowBtn }) {
   };
 
   return (
-    <div className="flex flex-row gap-2 items-center gap-4">
-      <div className="flex flex-col items-start gap-2">
-        <label htmlFor="textFilters">Filters:</label>
+    <div className="flex flex-row gap-2 items-center gap-4 mt-2 ">
+      <div className="flex flex-col items-start gap-1">
+        <label htmlFor="textFilters" className="text-[12px] relative left-1">
+          Filters:
+        </label>
         <select
           value={filters || 'none'}
           onChange={handleSelectChange}
           id="textFilters"
-          className=" border border-white/70 rounded-[7px] py-1 px-2 w-40 bg-[#111] outline-none text-white"
+          className=" border rounded-[7px] border-zinc-800 bg-zinc-900/40 px-3 py-2 outline-none text-white"
           defaultValue="none"
         >
           <option value="none">None</option>
-          <option value="reverse">reverse</option>
+
+          <option value="chromostereopsis1">Chromostereopsis 1</option>
+          <option value="chromostereopsis2">Chromostereopsis 2</option>
+
+          <option value="flipVertically">Flip Vertically</option>
+          <option value="flipHorizontally">Flip Horizontally</option>
+          <option value="flip">Flip</option>
+
+          <option value="rainbow1">Rainbow 1</option>
+          <option value="rainbow2">Rainbow 2</option>
+          <option value="rainbow3">Rainbow 3</option>
+
+          <option value="sleek">Sleek</option>
+
+          <option value="bashComment">Bash style comment</option>
+          <option value="cComment">C style comment</option>
+          <option value="cppComment">C++ style comment</option>
+          <option value="fortranComment">Fortran style comment</option>
+          <option value="mysqlComment">MySQL style comment</option>
+          <option value="shellEcho">Shell Echo Commands</option>
+          <option value="vbComment">Visual Basic style comment</option>
         </select>
       </div>
     </div>

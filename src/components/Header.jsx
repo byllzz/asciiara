@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Options from './Options';
 import TextInput from './TextInput';
 import Controls from './Controls';
 
 export default function Header({ inputTxt, setInputText, options, setOptions, setShowSection }) {
   return (
-    <div className="flex flex-col items-center w-full max-w-xl rounded-xl p-2 bg-[#111] text-white">
-      <h3>Text to ASCII Art Generator: Create ASCII Art from Text</h3>
-      <div className="grid grid-cols-2 items-start pt-3 w-full px-2">
+    <div className="font-outfit flex flex-col items-center w-full max-w-[485px] rounded-[8px] p-1 pt-2 bg-zinc-700 text-white">
+      <h3 className="text-[17px] font-medium">
+        Text to ASCII Art Generator: Create ASCII Art from Text
+      </h3>
+      <div className="grid grid-cols-2 gap-2 justify-between items-start pt-1 w-full px-2">
         <div className="flex flex-col items-center gap-3">
           <Options options={options} setOptions={setOptions} />
-          <Controls setShowSection={setShowSection} />
+          <div className='relative right-2 bottom-1'>
+            <Controls setShowSection={setShowSection} />
+          </div>
         </div>
         <TextInput textInput={inputTxt} setInputText={setInputText} />
       </div>
