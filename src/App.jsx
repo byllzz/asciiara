@@ -1,40 +1,32 @@
 import React from 'react';
-import { useState , useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import MainLayout from './layouts/MainLayout';
-import About from './components/About'
+import About from './components/About';
 import Settings from './components/Settings';
 import TestAll from './components/TestAll';
-import { renderFormattedText } from './utils/transformers'
+import { renderFormattedText } from './utils/transformers';
 import { Plus } from 'lucide-react';
 
 export default function App() {
   const [inputTxt, setInputText] = useState('Type Something cool.');
-  const [options, setOptions] = useState("uppercase");
+  const [options, setOptions] = useState('uppercase');
 
-  const [showSection , setShowSection] = useState("main");
-
+  const [showSection, setShowSection] = useState('main');
 
   const [showToast, setShowToast] = useState(false);
 
-
-
-
   // from transformers.js
-let textWithOptions = renderFormattedText(options , inputTxt);
+  let textWithOptions = renderFormattedText(options, inputTxt);
   console.log(typeof textWithOptions);
 
-
   useEffect(() => {
-  const timer =   setTimeout(() => {
+    const timer = setTimeout(() => {
       setShowToast(false);
-  }, 5000);
+    }, 5000);
 
-  return () => clearTimeout(timer)
-
-  }, [showToast])
-
-
+    return () => clearTimeout(timer);
+  }, [showToast]);
 
   // all settings
   const [settings, setSettings] = useState({
@@ -45,6 +37,21 @@ let textWithOptions = renderFormattedText(options , inputTxt);
     themeToggle: true,
   });
 
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (showSection === 'main') {
+      setIsLoading(false);
+      return;
+    }
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [showSection]);
   return (
     <div
       className={`${settings.themeToggle === false ? 'bg-zinc-400' : 'bg-zinc-800'} flex flex-col items-center border w-full h-screen pt-2 gap-2 overflow-hidden relative`}
@@ -56,30 +63,53 @@ let textWithOptions = renderFormattedText(options , inputTxt);
         setOptions={setOptions}
         setShowSection={setShowSection}
         settings={settings}
+        output={textWithOptions}
       />
       <div
         className={`${settings.themeToggle ? 'bg-zinc-950' : 'bg-white'} w-full h-full overflow-hidden`}
       >
-        {showSection === 'main' && (
-          <MainLayout
-            output={textWithOptions}
-            setOptions={setOptions}
-            setShowToast={setShowToast}
-            settings={settings}
-          />
+        {isLoading && (
+          <div className=" z-50 flex items-center justify-center bg-inherit backdrop-blur-md animate-in fade-in duration-300 w-full h-full">
+            <div className="flex flex-col items-center gap-3">
+              {/* Modern CSS Spinner */}
+              <div className="w-10 h-10 border-4 border-blue-500/20 border-t-blue-600 rounded-full animate-spin"></div>
+              <p className="text-sm font-medium animate-pulse text-white">
+                Loading {showSection}...
+              </p>
+            </div>
+          </div>
         )}
-        {showSection === 'about' && <About setShowSection={setShowSection} settings={settings} />}
-        {showSection === 'settings' && (
-          <Settings setShowSection={setShowSection} settings={settings} setSettings={setSettings} />
-        )}
-        {showSection === 'testall' && (
-          <TestAll
-            setShowSection={setShowSection}
-            inputTxt={inputTxt}
-            setShowToast={setShowToast}
-            setOptions={setOptions}
-            settings={settings}
-          />
+
+        {!isLoading && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+            {showSection === 'main' && (
+              <MainLayout
+                output={textWithOptions}
+                setOptions={setOptions}
+                setShowToast={setShowToast}
+                settings={settings}
+              />
+            )}
+            {showSection === 'about' && (
+              <About setShowSection={setShowSection} settings={settings} />
+            )}
+            {showSection === 'settings' && (
+              <Settings
+                setShowSection={setShowSection}
+                settings={settings}
+                setSettings={setSettings}
+              />
+            )}
+            {showSection === 'testall' && (
+              <TestAll
+                setShowSection={setShowSection}
+                inputTxt={inputTxt}
+                setShowToast={setShowToast}
+                setOptions={setOptions}
+                settings={settings}
+              />
+            )}
+          </div>
         )}
       </div>
 

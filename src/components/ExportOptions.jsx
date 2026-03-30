@@ -3,39 +3,30 @@ import React  from 'react'
 import {Copy , Share, Image } from 'lucide-react'
 // import {copyOutputResult} from '../utils/transformers';
 
-export default function ExportOptions({ output, onDownload, setShowToast , settings }) {
-
+export default function ExportOptions({ output, setShowToast,  setHitDownload }) {
   // copying to clipboard
-const handleCopy = () => {
-  if (!output || output.trim() === "") return;
-  navigator.clipboard.writeText(output);
-  setShowToast(true);
-};
+  const handleCopy = () => {
+    if (!output || output.trim() === '') return;
+    navigator.clipboard.writeText(output);
+    setShowToast(true);
+  };
 
-// native sharing
-const shareText = async () => {
-  if (!output || output.trim() === "") return;
-  if (navigator.share) {
-    try {
-      await navigator.share({
-        title: 'My Asciiara Art',
-        text: output,
-      });
-    } catch (err) {
-      console.log('Error sharing:', err);
-    }
-  } else {
-    handleCopy();
-    alert("Share not supported, text copied to clipboard instead!");
-  }
-};
-
-
- const handleBothDownloadCopy = async () => {
-   await onDownload();
-   if (settings.autoCopy) {
+  // native sharing
+  const shareText = async () => {
+    if (!output || output.trim() === '') return;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My Asciiara Art',
+          text: output,
+        });
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
       handleCopy();
-   }
+      alert('Share not supported, text copied to clipboard instead!');
+    }
   };
 
   return (
@@ -58,7 +49,7 @@ const shareText = async () => {
       {/* download */}
       <button
         disabled={!output || output.trim() === ''}
-        onClick={handleBothDownloadCopy}
+        onClick={() => setHitDownload(true)}
         className={`flex items-center justify-center gap-2 text-[14px] border rounded-[8px] py-[5px] px-2.5 transition-all
       ${
         !output || output.trim() === ''
