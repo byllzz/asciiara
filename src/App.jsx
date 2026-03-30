@@ -73,7 +73,7 @@ export default function App() {
             <div className="flex flex-col items-center gap-3">
               {/* Modern CSS Spinner */}
               <div className="w-10 h-10 border-4 border-blue-500/20 border-t-blue-600 rounded-full animate-spin"></div>
-              <p className="text-sm font-medium animate-pulse text-white">
+              <p className={`text-sm font-medium animate-pulse ${settings.themeToggle === false ? "text-black" : "text-white"}`}>
                 Loading {showSection}...
               </p>
             </div>

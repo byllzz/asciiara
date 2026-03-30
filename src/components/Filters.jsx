@@ -16,7 +16,10 @@ export default function Filters({ filters, setFilters, setShowBtn  , settings , 
   return (
     <div className="flex flex-row gap-2 items-center gap-4 mt-2 ">
       <div className="flex flex-col items-start gap-1">
-        <label htmlFor="textFilters" className="text-[12px] relative left-1">
+        <label
+          htmlFor="textFilters"
+          className={`text-[12px] relative left-1 ${settings.themeToggle === false ? 'text-black' : 'text-white'}`}
+        >
           Filters:
         </label>
         <select
@@ -24,10 +27,10 @@ export default function Filters({ filters, setFilters, setShowBtn  , settings , 
           onChange={handleSelectChange}
           disabled={!output || output.trim() === ''}
           id="textFilters"
-          className={`border rounded-[7px] ${settings.themeToggle === false ? 'border-zinc-700 bg-white text-black' : 'border-zinc-800 text-white bg-zinc-950/50'}  px-3 py-2 outline-none  ${
+          className={`border rounded-[7px] ${settings.themeToggle === false ? 'border-zinc-950/20 border-2 font-semibold bg-white text-black' : 'border-zinc-800 text-white bg-zinc-950'}  px-3 py-2 outline-none  ${
             !output || output.trim() === ''
               ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
-              : 'cursor-pointer border-zinc-800 bg-zinc-950 text-white hover:bg-zinc-800'
+              : 'cursor-pointer border-zinc-800'
           } `}
           defaultValue="none"
         >

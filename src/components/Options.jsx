@@ -19,7 +19,6 @@ export default function Options({options , setOptions , setShowSection , setting
       >
         <option value="uppercase">Uppercase</option>
         <option value="lowercase">Lowercase</option>
-        <option value="sort">Sort</option>
       </select>
     </div>
   );

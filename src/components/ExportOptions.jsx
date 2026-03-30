@@ -3,7 +3,7 @@ import React  from 'react'
 import {Copy , Share, Image } from 'lucide-react'
 // import {copyOutputResult} from '../utils/transformers';
 
-export default function ExportOptions({ output, setShowToast,  setHitDownload }) {
+export default function ExportOptions({ output, setShowToast,  setHitDownload , settings }) {
   // copying to clipboard
   const handleCopy = () => {
     if (!output || output.trim() === '') return;
@@ -39,8 +39,8 @@ export default function ExportOptions({ output, setShowToast,  setHitDownload })
       ${
         !output || output.trim() === ''
           ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
-          : 'cursor-pointer border-zinc-800 bg-zinc-950 text-white hover:bg-zinc-800'
-      }`}
+          : 'cursor-pointer border-zinc-800 '
+      }  ${settings.themeToggle === false ? 'bg-white border-zinc-950/20 border-2 font-semibold text-black' : ' bg-zinc-950 text-white hover:bg-zinc-800'}`}
       >
         <Copy size={15} />
         Copy
@@ -54,8 +54,8 @@ export default function ExportOptions({ output, setShowToast,  setHitDownload })
       ${
         !output || output.trim() === ''
           ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
-          : 'cursor-pointer border-zinc-800 bg-zinc-950 text-white hover:bg-zinc-800'
-      }`}
+          : 'cursor-pointer border-zinc-800 '
+      }  ${settings.themeToggle === false ? 'bg-white border-zinc-950/20 border-2 font-semibold text-black' : ' bg-zinc-950 text-white hover:bg-zinc-800'}`}
       >
         <Image size={15} />
         Save as Image
@@ -69,8 +69,10 @@ export default function ExportOptions({ output, setShowToast,  setHitDownload })
       ${
         !output || output.trim() === ''
           ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
-          : 'cursor-pointer border-zinc-800 bg-zinc-950 text-white hover:bg-zinc-800'
-      }`}
+          : 'cursor-pointer border-zinc-800'
+      }
+${settings.themeToggle === false ? 'bg-white border-zinc-950/20 border-2 font-semibold text-black' : ' bg-zinc-950 text-white hover:bg-zinc-800'}
+          `}
       >
         <Share size={15} />
         Share

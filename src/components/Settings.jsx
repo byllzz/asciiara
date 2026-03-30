@@ -26,11 +26,9 @@ const SettingItem = ({ id, title, description, infoText, children, showInfo, onT
           <button
             onClick={() => onToggleInfo(id)}
             className={`flex items-center justify-center rounded-[8px] h-[40px] w-[40px] transition-all cursor-pointer border
-              ${
-                isActive
-                  ? `${settings.themeToggle === false ? 'border-blue-900 bg-blue-900/100 text-white' : 'border-blue-500 bg-blue-900/30'} text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)]`
-                  : 'border-zinc-800 bg-zinc-950 hover:bg-zinc-800 text-blue-700'
-              }`}
+               ${settings.themeToggle === false ? 'border-zinc-900/20 bg-white text-black border-2' : 'border-zinc-700 bg-zinc-950 hover:bg-blue-600 text-white '} ]
+                  ${isActive ? ' text-blue-700 shadow-[0_0_10px_rgba(59,130,246,0.2)' : ''}
+               `}
           >
             <Info size={18} strokeWidth={2.5} />
           </button>

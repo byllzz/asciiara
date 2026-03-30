@@ -51,13 +51,14 @@ const handleFilterLogic = () => {
 
   return (
     <div className=" w-full h-full py-3 px-5 flex flex-col items-start  text-white mt-1">
-      <div className="relative right-2.5">
+      <div className="relative top-9 right-2.5 mb-20">
         <OutputArea output={withFiltersData} settings={settings} reff={outputRef} />
       </div>
       <ExportOptions
         output={withFiltersData}
         setShowToast={setShowToast}
         setHitDownload={handleOpenPreview}
+        settings={settings}
       />
 
       <div className="flex items-center gap-2">
@@ -72,7 +73,7 @@ const handleFilterLogic = () => {
           <button
             disabled={!output || output.trim() === ''}
             onClick={handleFilterLogic}
-            className={` flex items-center justify-center gap-1 py-1 font-bold px-2.5 cursor-pointer text-[13px] rounded-full relative top-4 transition-all duration-300  ${
+            className={` h-10 flex items-center justify-center gap-1 py-1 font-bold px-2.5 cursor-pointer text-[13px] rounded-full relative top-4 transition-all duration-300  ${
               !output || output.trim() === ''
                 ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-blue-900/50 text-zinc-500'
                 : 'cursor-pointer border-zinc-800 bg-blue-800 text-white hover:opacity-95'

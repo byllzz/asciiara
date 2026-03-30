@@ -82,7 +82,7 @@ const PreviewCard = ({ opt, inputTxt, setShowToast , setOptions , setShowSection
 //  TestAll
 export default function TestAll({ inputTxt, setShowSection, setShowToast , setOptions , settings}) {
   // Add any new formats you create in transformers.js to this list
-  const allOptions = ['uppercase', 'lowercase' , 'sort'];
+  const allOptions = ['uppercase', 'lowercase'];
 
 
   // later note: move this to global so everyone use this
