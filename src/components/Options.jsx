@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Options({options , setOptions}) {
+export default function Options({options , setOptions , setShowSection}) {
   return (
     <div className="flex flex-col items-start gap-1 w-full">
       <label htmlFor="options" className="text-xs">
@@ -8,12 +8,16 @@ export default function Options({options , setOptions}) {
       </label>
       <select
         value={options}
-        onChange={e => setOptions(e.target.value)}
+        onChange={e => {
+          setOptions(e.target.value);
+          setShowSection("main");
+        }}
         id="options"
         className="w-full border rounded-[4px] p-2 border-zinc-900 bg-zinc-900/40 text-white text-[14px]"
       >
         <option value="uppercase">Uppercase</option>
         <option value="lowercase">Lowercase</option>
+        <option value="sort">Sort</option>
       </select>
     </div>
   );

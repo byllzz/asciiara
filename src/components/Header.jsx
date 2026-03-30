@@ -11,12 +11,12 @@ export default function Header({ inputTxt, setInputText, options, setOptions, se
       </h3>
       <div className="grid grid-cols-2 gap-2 justify-between items-start pt-1 w-full px-2">
         <div className="flex flex-col items-center gap-3">
-          <Options options={options} setOptions={setOptions} />
+          <Options options={options} setOptions={setOptions} setShowSection={setShowSection} />
           <div className='relative right-2 bottom-1'>
             <Controls setShowSection={setShowSection} />
           </div>
         </div>
-        <TextInput textInput={inputTxt} setInputText={setInputText} />
+        <TextInput textInput={inputTxt} setInputText={setInputText} setShowSection={setShowSection} />
       </div>
     </div>
   );
