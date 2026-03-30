@@ -4,10 +4,10 @@ export default function OutputArea({ output , settings , reff  }) {
   return (
     <div
       ref={reff}
-      className="bg-zinc-950 text-white min-h-30  relative flex items-center justify-start pb-2 pt-4 $"
+      className="bg-zinc-950 text-white min-h-30 w-full relative flex items-center justify-start pb-2 pt-4 pr-5"
     >
       {settings.watermark && (
-        <div className="absolute bottom-2 right-2 text-[10px] text-white">
+        <div className="absolute bottom-2 right-2 text-[10px] text-white w-full">
           <p>Generated via Asciiara</p>
         </div>
       )}
