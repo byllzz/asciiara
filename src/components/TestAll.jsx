@@ -109,13 +109,15 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
 
       <div className="flex flex-col items-center gap-2 max-w-xl mx-auto pt-5">
         <img
-           src={settings.themeToggle ? darkbanner : lightbanner}
+          src={settings.themeToggle ? darkbanner : lightbanner}
           alt="Asciiara Testall fonts section banner"
           loading="lazy"
           draggable="false"
           className="w-full h-auto max-h-[300px] object-cover  mb-8 select-none"
         />
-        <h3 className="mt-4 text-[15px] font-outfit tracking-wide">
+        <h3
+          className={`${settings.themeToggle === false ? 'text-black' : 'text-white'} mt-4 text-[15px] font-outfit tracking-wide`}
+        >
           Number of fonts : &nbsp; {allOptions.length}{' '}
         </h3>
       </div>
