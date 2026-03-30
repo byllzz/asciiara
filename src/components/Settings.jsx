@@ -3,14 +3,19 @@ import optionsbanner from '../assets/options.png';
 import { Info, Plus, RotateCcw } from 'lucide-react';
 import { BsGithub } from 'react-icons/bs';
 
-const SettingItem = ({ id, title, description, infoText, children, showInfo, onToggleInfo }) => {
+const SettingItem = ({ id, title, description, infoText, children, showInfo, onToggleInfo , settings }) => {
   const isActive = showInfo === id;
+
 
   return (
     <div className="flex flex-col gap-4 p-2 rounded-xl transition-all">
       <div className="flex w-full items-center justify-between gap-4">
         <div className="flex-1">
-          <p className="font-medium text-white text-base">{title}</p>
+          <p
+            className={`font-medium ${settings.themeToggle === false ? 'text-black' : 'text-white'} text-base`}
+          >
+            {title}
+          </p>
           <p className="text-xs text-zinc-400 leading-relaxed">{description}</p>
         </div>
 
@@ -21,9 +26,11 @@ const SettingItem = ({ id, title, description, infoText, children, showInfo, onT
           <button
             onClick={() => onToggleInfo(id)}
             className={`flex items-center justify-center rounded-[8px] h-[40px] w-[40px] transition-all cursor-pointer border
-              ${isActive
-                ? 'border-blue-500 bg-blue-900/30 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)]'
-                : 'border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white'}`}
+              ${
+                isActive
+                  ? `${settings.themeToggle === false ? 'border-blue-900 bg-blue-900/100 text-white' : 'border-blue-500 bg-blue-900/30'} text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)]`
+                  : 'border-zinc-800 bg-zinc-950 hover:bg-zinc-800 text-blue-700'
+              }`}
           >
             <Info size={18} strokeWidth={2.5} />
           </button>
@@ -32,7 +39,9 @@ const SettingItem = ({ id, title, description, infoText, children, showInfo, onT
 
       {/* Info Panel */}
       {isActive && (
-        <div className="bg-blue-950/40 text-blue-100 py-3 px-4 rounded-lg border border-blue-500/30 w-full animate-in fade-in slide-in-from-top-2 duration-300">
+        <div
+          className={`${settings.themeToggle === false ? 'bg-blue-950/90 text-blue-100' : 'bg-blue-950/40 text-blue-100'} py-3 px-4 rounded-lg border border-blue-500/30 w-full animate-in fade-in slide-in-from-top-2 duration-300`}
+        >
           <p className="text-sm leading-relaxed">
             <span className="font-bold text-blue-400">Note:</span> {infoText}
           </p>
@@ -42,8 +51,15 @@ const SettingItem = ({ id, title, description, infoText, children, showInfo, onT
   );
 };
 
-export default function Settings({ setShowSection }) {
+export default function Settings({
+  setShowSection,
+  settings,
+  setSettings, }) {
+
+
+
   const [showInfo, setShowInfo] = useState('');
+
 
   // click logic on infoBtn
   const handleToggleInfo = (id) => {
@@ -57,11 +73,20 @@ export default function Settings({ setShowSection }) {
       }
     ];
 
+
+
+const handleToggle = (key) => {
+  setSettings((prev) => ({
+    ...prev,
+    [key]: !prev[key],
+  }));
+};
+
   return (
     <div className="w-full h-137 overflow-y-auto relative text-white flex flex-col items-center py-4 bg-transparent scroll-smooth">
       {/* Close Button */}
       <button
-        className="text-zinc-300 rounded-full cursor-pointer fixed top-53 right-10 z-50"
+        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-53 right-10`}
         onClick={() => setShowSection('main')}
       >
         <Plus className="rotate-45" size={20} />
@@ -93,23 +118,30 @@ export default function Settings({ setShowSection }) {
             infoText="Higher values (24px+) are great for visual checking, while 16px is standard for Discord/GitHub exports."
             showInfo={showInfo}
             onToggleInfo={handleToggleInfo}
+            settings={settings}
           >
             <input
               type="range"
-              min="12"
-              max="54"
-              defaultValue="18"
-              className="w-32 appearance-none bg-transparent cursor-pointer
+              min="16"
+              max="100"
+              value={settings.fontSize}
+              onChange={e =>
+                setSettings(prev => ({
+                  ...prev,
+                  fontSize: e.target.value,
+                }))
+              }
+              className={`w-32 appearance-none bg-transparent cursor-pointer
                 [&::-webkit-slider-runnable-track]:h-[6px]
                 [&::-webkit-slider-runnable-track]:rounded-full
-                [&::-webkit-slider-runnable-track]:bg-white/20
+                ${settings.themeToggle === false ? '[&::-webkit-slider-runnable-track]:bg-black' : '[&::-webkit-slider-runnable-track]:bg-white'}
                 [&::-webkit-slider-thumb]:appearance-none
                 [&::-webkit-slider-thumb]:h-[16px]
                 [&::-webkit-slider-thumb]:w-[16px]
                 [&::-webkit-slider-thumb]:rounded-full
                 [&::-webkit-slider-thumb]:bg-blue-500
                 [&::-webkit-slider-thumb]:mt-[-5px]
-                "
+              `}
             />
           </SettingItem>
 
@@ -120,9 +152,15 @@ export default function Settings({ setShowSection }) {
             infoText="ASCII Art requires monospace fonts to keep characters perfectly aligned. Turning this off may 'break' complex art."
             showInfo={showInfo}
             onToggleInfo={handleToggleInfo}
+            settings={settings}
           >
             <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" className="sr-only peer" />
+              <input
+                type="checkbox"
+                className="sr-only peer"
+                checked={settings.mono}
+                onChange={() => handleToggle('mono')}
+              />
               <div className="w-11 h-6 bg-zinc-800 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
             </label>
           </SettingItem>
@@ -141,9 +179,15 @@ export default function Settings({ setShowSection }) {
             infoText="Enabling this will automatically put the raw text into your clipboard the moment you hit the 'Save Image' button."
             showInfo={showInfo}
             onToggleInfo={handleToggleInfo}
+            settings={settings}
           >
             <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" className="sr-only peer" defaultChecked />
+              <input
+                type="checkbox"
+                className="sr-only peer"
+                checked={settings.autoCopy}
+                onChange={() => handleToggle('autoCopy')}
+              />
               <div className="w-11 h-6 bg-zinc-800 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
             </label>
           </SettingItem>
@@ -155,17 +199,61 @@ export default function Settings({ setShowSection }) {
             infoText="This adds 'Generated via Asciiara' to the bottom right of your PNG exports. Great for supporting the project!"
             showInfo={showInfo}
             onToggleInfo={handleToggleInfo}
+            settings={settings}
           >
             <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" className="sr-only peer" />
+              <input
+                type="checkbox"
+                className="sr-only peer"
+                checked={settings.watermark}
+                onChange={() => handleToggle('watermark')}
+              />
               <div className="w-11 h-6 bg-zinc-800 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
             </label>
           </SettingItem>
         </section>
 
+        <section className="flex items-center flex-col gap-2 justify-center">
+          <h3 className="text-[18px] text-white">Theme Toggle</h3>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              className="sr-only peer"
+              checked={settings.themeToggle}
+              onChange={() => handleToggle('themeToggle')}
+            />
+
+            <div
+              className="bg-black h-7 w-14
+      rounded-full
+      transition-colors duration-100
+      relative
+      after:content-[''] after:absolute after:top-[2.5px] after:left-[2.5px]
+      after:w-[22px] after:h-[22px]
+      after:rounded-full
+      after:bg-white
+      after:transition-transform after:duration-300
+      peer-checked:after:translate-x-[31px]
+     peer-checked:bg-white peer-checked:after:bg-black
+      "
+            />
+          </label>
+        </section>
+
         {/* FOOTER */}
         <footer className="pt-10 border-t border-zinc-900 flex flex-col items-center gap-6">
-          <button className="flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-sm hover:text-red-400 hover:border-red-900/50 transition-all cursor-pointer group">
+          <button
+            className="flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-sm hover:text-red-400 hover:border-red-900/50 transition-all cursor-pointer group"
+            onClick={() =>
+              setSettings({
+                fontSize: 54,
+                mono: true,
+                autoCopy: true,
+                watermark: false,
+                themeToggle: true,
+              })
+            }
+          >
             <RotateCcw size={16} className="group-hover:rotate-[-90deg] transition-transform" />
             Reset Defaults
           </button>
@@ -186,7 +274,10 @@ export default function Settings({ setShowSection }) {
             return (
               <ul className="flex items-center justify-center gap-3">
                 <li key={item.id}>
-                  <a href={item.href} className="text-2xl hover:brightness-150">
+                  <a
+                    href={item.href}
+                    className={`text-2xl hover:brightness-150 ${settings.themeToggle === false ? 'text-black' : 'text-white'}`}
+                  >
                     {IconComponent}
                   </a>
                 </li>
@@ -195,8 +286,9 @@ export default function Settings({ setShowSection }) {
           })}
 
           <button
-            onClick={()=> setShowSection('main')}
-            className="flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-4 transition-all relative top-10  border-zinc-800 bg-zinc-950 text-zinc-200 cursor-pointer"
+            onClick={() => setShowSection('main')}
+            className={`flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-4 transition-all relative top-10  border-zinc-800 bg-zinc-950
+            text-white cursor-pointer`}
           >
             Done
           </button>

@@ -15,7 +15,10 @@ export default function App() {
   const [showSection , setShowSection] = useState("main");
 
 
-   const [showToast, setShowToast] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
+
+
 
   // from transformers.js
 let textWithOptions = renderFormattedText(options , inputTxt);
@@ -31,31 +34,51 @@ let textWithOptions = renderFormattedText(options , inputTxt);
 
   }, [showToast])
 
+
+
+  // all settings
+  const [settings, setSettings] = useState({
+    fontSize: 54,
+    mono: true,
+    autoCopy: true,
+    watermark: false,
+    themeToggle: true,
+  });
+
   return (
-    <div className="bg-zinc-800 flex flex-col items-center border w-full h-screen pt-2 gap-2 overflow-hidden relative">
+    <div
+      className={`${settings.themeToggle === false ? 'bg-zinc-400' : 'bg-zinc-800'} flex flex-col items-center border w-full h-screen pt-2 gap-2 overflow-hidden relative`}
+    >
       <Header
         inputTxt={inputTxt}
         setInputText={setInputText}
         options={options}
         setOptions={setOptions}
         setShowSection={setShowSection}
+        settings={settings}
       />
-      <div className="bg-zinc-950 w-full h-full overflow-hidden">
+      <div
+        className={`${settings.themeToggle ? 'bg-zinc-950' : 'bg-white'} w-full h-full overflow-hidden`}
+      >
         {showSection === 'main' && (
           <MainLayout
             output={textWithOptions}
             setOptions={setOptions}
             setShowToast={setShowToast}
+            settings={settings}
           />
         )}
-        {showSection === 'about' && <About setShowSection={setShowSection} />}
-        {showSection === 'settings' && <Settings setShowSection={setShowSection} />}
+        {showSection === 'about' && <About setShowSection={setShowSection} settings={settings} />}
+        {showSection === 'settings' && (
+          <Settings setShowSection={setShowSection} settings={settings} setSettings={setSettings} />
+        )}
         {showSection === 'testall' && (
           <TestAll
             setShowSection={setShowSection}
             inputTxt={inputTxt}
             setShowToast={setShowToast}
             setOptions={setOptions}
+            settings={settings}
           />
         )}
       </div>

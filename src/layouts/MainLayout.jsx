@@ -5,7 +5,7 @@ import Filters from '../components/Filters';
 import {  Plus } from 'lucide-react';
 import { withFilters } from '../utils/transformers';
 import { toPng } from 'html-to-image';
-export default function MainLayout({output , setShowToast}) {
+export default function MainLayout({output , setShowToast , settings}) {
 
   const [showBtn , setShowBtn] = useState(false);
 
@@ -39,17 +39,18 @@ const handleFilterLogic = () => {
 
   return (
     <div className=" w-full h-full py-3 px-5 flex flex-col items-start  text-white mt-1">
-      <div ref={outputRef} className="bg-zinc-950 p-4 my-4">
-        <OutputArea output={withFiltersData} />
+      <div className='relative right-2.5'>
+        <OutputArea output={withFiltersData} settings={settings} reff={outputRef} />
       </div>
       <ExportOptions
         output={withFiltersData}
         onDownload={downlaodImage}
         setShowToast={setShowToast}
+        settings={settings}
       />
 
       <div className="flex items-center gap-2">
-        <Filters filters={filters} setFilters={setFilters} setShowBtn={setShowBtn} />
+        <Filters filters={filters} setFilters={setFilters} setShowBtn={setShowBtn} settings={settings} />
         {showBtn ? (
           <button
             onClick={handleFilterLogic}
@@ -64,8 +65,6 @@ const handleFilterLogic = () => {
           ''
         )}
       </div>
-
-
     </div>
   );
 }

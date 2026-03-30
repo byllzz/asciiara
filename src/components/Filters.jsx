@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-export default function Filters({ filters, setFilters, setShowBtn }) {
+export default function Filters({ filters, setFilters, setShowBtn  , settings}) {
   const handleSelectChange = e => {
     const selectedValue = e.target.value;
     setFilters(selectedValue);
@@ -23,7 +23,7 @@ export default function Filters({ filters, setFilters, setShowBtn }) {
           value={filters || 'none'}
           onChange={handleSelectChange}
           id="textFilters"
-          className=" border rounded-[7px] border-zinc-800 bg-zinc-900/40 px-3 py-2 outline-none text-white"
+          className={`border rounded-[7px] ${settings.themeToggle === false ? 'border-zinc-700 bg-white text-black' : 'border-zinc-800 text-white bg-zinc-950/50'}  px-3 py-2 outline-none `}
           defaultValue="none"
         >
           <option value="none">None</option>

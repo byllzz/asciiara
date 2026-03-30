@@ -3,7 +3,7 @@ import React  from 'react'
 import {Copy , Share, Image } from 'lucide-react'
 // import {copyOutputResult} from '../utils/transformers';
 
-export default function ExportOptions({ output, onDownload, setShowToast }) {
+export default function ExportOptions({ output, onDownload, setShowToast , settings }) {
 
   // copying to clipboard
 const handleCopy = () => {
@@ -30,6 +30,14 @@ const shareText = async () => {
   }
 };
 
+
+ const handleBothDownloadCopy = async () => {
+   await onDownload();
+   if (settings.autoCopy) {
+      handleCopy();
+   }
+  };
+
   return (
     <div className="flex items-center gap-3">
       {/* copy */}
@@ -39,8 +47,8 @@ const shareText = async () => {
         className={`flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-2.5 transition-all
       ${
         !output || output.trim() === ''
-          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950 text-zinc-500'
-          : 'cursor-pointer border-zinc-800 bg-zinc-900/50 text-white hover:bg-zinc-800'
+          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
+          : 'cursor-pointer border-zinc-800 bg-zinc-950 text-white hover:bg-zinc-800'
       }`}
       >
         <Copy size={15} />
@@ -50,12 +58,12 @@ const shareText = async () => {
       {/* download */}
       <button
         disabled={!output || output.trim() === ''}
-        onClick={onDownload}
+        onClick={handleBothDownloadCopy}
         className={`flex items-center justify-center gap-2 text-[14px] border rounded-[8px] py-[5px] px-2.5 transition-all
       ${
         !output || output.trim() === ''
-          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950 text-zinc-500'
-          : 'cursor-pointer border-zinc-800 bg-zinc-900/50 text-white hover:bg-zinc-800'
+          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
+          : 'cursor-pointer border-zinc-800 bg-zinc-950 text-white hover:bg-zinc-800'
       }`}
       >
         <Image size={15} />
@@ -69,8 +77,8 @@ const shareText = async () => {
         className={`flex items-center justify-center gap-2 text-[14px] border rounded-[8px] py-[5px] px-2.5 transition-all
       ${
         !output || output.trim() === ''
-          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950 text-zinc-500'
-          : 'cursor-pointer border-zinc-800 bg-zinc-900/50 text-white hover:bg-zinc-800'
+          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
+          : 'cursor-pointer border-zinc-800 bg-zinc-950 text-white hover:bg-zinc-800'
       }`}
       >
         <Share size={15} />

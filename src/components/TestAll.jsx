@@ -80,7 +80,7 @@ const PreviewCard = ({ opt, inputTxt, setShowToast , setOptions , setShowSection
 };
 
 //  TestAll
-export default function TestAll({ inputTxt, setShowSection, setShowToast , setOptions }) {
+export default function TestAll({ inputTxt, setShowSection, setShowToast , setOptions , settings}) {
   // Add any new formats you create in transformers.js to this list
   const allOptions = ['uppercase', 'lowercase' , 'sort'];
 
@@ -100,7 +100,7 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
   return (
     <div className="w-full h-137 overflow-y-auto relative text-white flex flex-col items-center pt-4 pb-30">
       <button
-        className="text-zinc-300 rounded-full cursor-pointer  fixed top-53 right-10"
+        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-53 right-10`}
         onClick={() => setShowSection('main')}
       >
         <Plus className="rotate-45" size={20} />
@@ -139,7 +139,10 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
           return (
             <ul className="flex items-center justify-center gap-3">
               <li key={item.id}>
-                <a href={item.href} className="text-2xl hover:brightness-150">
+                <a
+                  href={item.href}
+                  className={`text-2xl hover:brightness-150 ${settings.themeToggle === false ? 'text-black' : 'text-white'}`}
+                >
                   {IconComponent}
                 </a>
               </li>
