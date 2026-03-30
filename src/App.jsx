@@ -3,7 +3,7 @@ import { useState , useEffect } from 'react';
 import Header from './components/Header';
 import MainLayout from './layouts/MainLayout';
 import About from './components/About'
-import Extras from './components/Extras';
+import Settings from './components/Settings';
 import TestAll from './components/TestAll';
 import { renderFormattedText } from './utils/transformers'
 import { Plus } from 'lucide-react';
@@ -49,7 +49,7 @@ let textWithOptions = renderFormattedText(options , inputTxt);
           />
         )}
         {showSection === 'about' && <About setShowSection={setShowSection} />}
-        {showSection === 'extrasOptions' && <Extras setShowSection={setShowSection} />}
+        {showSection === 'settings' && <Settings setShowSection={setShowSection} />}
         {showSection === 'testall' && (
           <TestAll
             setShowSection={setShowSection}

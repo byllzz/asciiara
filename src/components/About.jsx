@@ -23,8 +23,14 @@ export default function About({ setShowSection }) {
         <Plus className="rotate-45" size={20} />
       </button>
       <div className="flex flex-col items-center gap-2 max-w-xl mx-auto pt-5">
-        <img src={aboutbanner} alt="about/faqs banner" />
-        <article className=" leading-6 text-base text-slate-200 font-outfit pb-30 pt-8">
+     <img
+  src={aboutbanner}
+  alt="Asciiara About and FAQ section banner"
+  loading="lazy"
+  draggable="false"
+  className="w-full h-auto max-h-[300px] object-cover  mb-8 select-none"
+/>
+        <article className=" leading-6 text-base text-slate-200 font-outfit pb-30 ">
           <header className="mb-2">
             <h1 className="text-2xl font-medium text-white relative right-1">What is Asciiara?</h1>
             <p className="text-lg leading-6 text-slate-300">
@@ -187,7 +193,7 @@ export default function About({ setShowSection }) {
               Done
             </button>
           </section>
-          <section></section>
+       
         </article>
       </div>
     </div>

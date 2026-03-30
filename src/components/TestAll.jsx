@@ -5,6 +5,8 @@ import { toPng } from 'html-to-image';
 import testallBanner from '../assets/testall.png'
 import { TiTick } from 'react-icons/ti';
 
+import { BsGithub } from 'react-icons/bs';
+
 // previewCard
 const PreviewCard = ({ opt, inputTxt, setShowToast , setOptions , setShowSection }) => {
   const cardRef = useRef(null);
@@ -82,8 +84,21 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
   // Add any new formats you create in transformers.js to this list
   const allOptions = ['uppercase', 'lowercase' , 'sort'];
 
+
+  // later note: move this to global so everyone use this
+      const socialLinks = [
+        {
+          id: 1,
+          href: 'https://github.com/byllzz',
+          icon: <BsGithub />,
+        },
+      ];
+
+      const handleToMain = () => {
+        setShowSection('main');
+      };
   return (
-    <div className="w-full h-150 overflow-y-auto relative text-white flex flex-col items-center py-4">
+    <div className="w-full h-137 overflow-y-auto relative text-white flex flex-col items-center pt-4 pb-30">
       <button
         className="text-zinc-300 rounded-full cursor-pointer  fixed top-53 right-10"
         onClick={() => setShowSection('main')}
@@ -91,9 +106,18 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
         <Plus className="rotate-45" size={20} />
       </button>
 
-      <img src={testallBanner} alt="about/faqs banner" className="h-[120px] mt-6" />
-
-      <h3 className='mt-4 text-[15px] font-outfit tracking-wide'>Number of fonts : &nbsp; {allOptions.length} </h3>
+      <div className="flex flex-col items-center gap-2 max-w-xl mx-auto pt-5">
+        <img
+          src={testallBanner}
+          alt="Asciiara Testall fonts section banner"
+          loading="lazy"
+          draggable="false"
+          className="w-full h-auto max-h-[300px] object-cover  mb-8 select-none"
+        />
+        <h3 className="mt-4 text-[15px] font-outfit tracking-wide">
+          Number of fonts : &nbsp; {allOptions.length}{' '}
+        </h3>
+      </div>
 
       {/* Grid of Cards */}
       <div className="grid w-full grid-cols-1 ">
@@ -108,6 +132,28 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
           />
         ))}
       </div>
+
+      <section className="pt-4 mt-6 flex flex-col items-center justify-center">
+        {socialLinks.map(item => {
+          const IconComponent = item.icon;
+          return (
+            <ul className="flex items-center justify-center gap-3">
+              <li key={item.id}>
+                <a href={item.href} className="text-2xl hover:brightness-150">
+                  {IconComponent}
+                </a>
+              </li>
+            </ul>
+          );
+        })}
+
+        <button
+          onClick={handleToMain}
+          className="flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-4 transition-all relative top-10  border-zinc-800 bg-zinc-950 text-zinc-200 cursor-pointer"
+        >
+          Done
+        </button>
+      </section>
     </div>
   );
 }

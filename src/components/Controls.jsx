@@ -14,7 +14,7 @@ export default function Controls({setShowSection}) {
         <span className="text-[14px]">About</span>
       </button>
       <button
-        onClick={() => setShowSection('extrasOptions')}
+        onClick={() => setShowSection('settings')}
         className="flex flex-col items-center cursor-pointer
          gap-[5px] hover:bg-zinc-800 p-2 rounded-[8px] transition-colors duration-200 "
       >
