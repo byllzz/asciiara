@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import optionsbanner from '../assets/options.png';
+import lightbanner from '../assets/lightsettingsbanner.png';
+import darkbanner from '../assets/darksettingsbanner.png';
 import { Info, Plus, RotateCcw } from 'lucide-react';
 import { BsGithub } from 'react-icons/bs';
 
@@ -93,7 +94,7 @@ const handleToggle = (key) => {
       {/* Banner */}
       <div className="flex flex-col items-center w-full max-w-xl px-6 pt-5">
         <img
-          src={optionsbanner}
+           src={settings.themeToggle ? darkbanner : lightbanner}
           alt="Asciiara Settings Banner"
           loading="lazy"
           draggable="false"

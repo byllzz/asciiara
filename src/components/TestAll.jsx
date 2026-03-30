@@ -2,7 +2,8 @@ import React, { useRef } from 'react';
 import { renderFormattedText } from '../utils/transformers';
 import { Plus, Copy, Image } from 'lucide-react';
 import { toPng } from 'html-to-image';
-import testallBanner from '../assets/testall.png'
+import lightbanner from '../assets/lighttestbanner.png'
+import darkbanner from '../assets/darktestbanner.png'
 import { TiTick } from 'react-icons/ti';
 
 import { BsGithub } from 'react-icons/bs';
@@ -98,7 +99,7 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
         setShowSection('main');
       };
   return (
-    <div className="w-full h-137 overflow-y-auto relative text-white flex flex-col items-center pt-4 pb-30">
+    <div className="w-full h-137 overflow-y-auto relative flex flex-col items-center pt-4 pb-30">
       <button
         className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-53 right-10`}
         onClick={() => setShowSection('main')}
@@ -108,7 +109,7 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
 
       <div className="flex flex-col items-center gap-2 max-w-xl mx-auto pt-5">
         <img
-          src={testallBanner}
+           src={settings.themeToggle ? darkbanner : lightbanner}
           alt="Asciiara Testall fonts section banner"
           loading="lazy"
           draggable="false"

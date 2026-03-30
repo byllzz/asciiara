@@ -1,5 +1,6 @@
 import React from 'react'
-import aboutbanner from '../assets/aboutbanner.png'
+import lightbanner from '../assets/lightaboutbanner.png'
+import darkbanner from '../assets/darkaboutbanner.png'
 import { Plus } from 'lucide-react'
 import { BsGithub } from 'react-icons/bs';
 export default function About({ setShowSection, settings }) {
@@ -26,11 +27,11 @@ export default function About({ setShowSection, settings }) {
       </button>
       <div className="flex flex-col items-center gap-2 max-w-xl mx-auto pt-5">
         <img
-          src={aboutbanner}
+          src={settings.themeToggle ? darkbanner : lightbanner}
           alt="Asciiara About and FAQ section banner"
           loading="lazy"
           draggable="false"
-          className="w-full h-auto max-h-[300px] object-cover mb-8 select-none"
+          className="w-full h-auto max-h-[300px] object-cover  select-none"
         />
         <article
           className={`leading-6 text-base ${settings.themeToggle === false ? 'text-black' : 'text-white'} font-outfit pb-30`}
