@@ -38,7 +38,7 @@ export default function ExportOptions({ output, setShowToast,  setHitDownload , 
         className={`flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-2.5 transition-all
       ${
         !output || output.trim() === ''
-          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
+          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-white/50 text-zinc-500'
           : 'cursor-pointer border-zinc-800 '
       }  ${settings.themeToggle === false ? 'bg-white border-zinc-950/20 border-2 font-semibold text-black' : ' bg-zinc-950 text-white hover:bg-zinc-800'}`}
       >
@@ -53,7 +53,7 @@ export default function ExportOptions({ output, setShowToast,  setHitDownload , 
         className={`flex items-center justify-center gap-2 text-[14px] border rounded-[8px] py-[5px] px-2.5 transition-all
       ${
         !output || output.trim() === ''
-          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
+          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-white/50 text-zinc-500'
           : 'cursor-pointer border-zinc-800 '
       }  ${settings.themeToggle === false ? 'bg-white border-zinc-950/20 border-2 font-semibold text-black' : ' bg-zinc-950 text-white hover:bg-zinc-800'}`}
       >
@@ -68,7 +68,7 @@ export default function ExportOptions({ output, setShowToast,  setHitDownload , 
         className={`flex items-center justify-center gap-2 text-[14px] border rounded-[8px] py-[5px] px-2.5 transition-all
       ${
         !output || output.trim() === ''
-          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-zinc-950/50 text-zinc-500'
+          ? 'opacity-80 cursor-not-allowed border-zinc-800 bg-white/50 text-zinc-500'
           : 'cursor-pointer border-zinc-800'
       }
 ${settings.themeToggle === false ? 'bg-white border-zinc-950/20 border-2 font-semibold text-black' : ' bg-zinc-950 text-white hover:bg-zinc-800'}
