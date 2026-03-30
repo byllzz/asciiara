@@ -8,7 +8,7 @@ import { TiTick } from 'react-icons/ti';
 import { BsGithub } from 'react-icons/bs';
 
 // previewCard
-const PreviewCard = ({ opt, inputTxt, setShowToast , setOptions , setShowSection }) => {
+const PreviewCard = ({ opt, inputTxt, setShowToast , setOptions , setShowSection  , settings}) => {
   const cardRef = useRef(null);
   const textToCopy = renderFormattedText(opt, inputTxt);
 
@@ -43,7 +43,7 @@ const PreviewCard = ({ opt, inputTxt, setShowToast , setOptions , setShowSection
       </span>
 
       <div ref={cardRef} className="py-6 my-3">
-        <pre className="text-xl whitespace-pre-wrap break-all font-mono">
+        <pre className={`text-xl whitespace-pre-wrap break-all font-mono ${settings.themeToggle === false ? "text-black " : "text-white"}`}>
           {textToCopy || 'No input provided'}
         </pre>
       </div>
@@ -129,6 +129,7 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast , setOp
             setShowToast={setShowToast}
             setOptions={setOptions}
             setShowSection={setShowSection}
+            settings={settings}
           />
         ))}
       </div>
