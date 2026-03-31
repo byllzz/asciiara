@@ -1,6 +1,5 @@
-// --- Plain / HTML maps ---
+// all filter maps made my hand...
 export const noneMap = text => text;
-
 export const chromostereopsis1Map = text =>
   text.split('').map((c, i) =>
     `<span style="color:${i % 2 ? 'red' : 'blue'}">${c}</span>`
@@ -43,7 +42,7 @@ export const rainbow3Map = text =>
 export const sleekMap = text =>
   `<span style="font-weight:300; letter-spacing:1px;">${text}</span>`;
 
-// --- Code / comment maps ---
+// exporting here
 export const bashCommentMap = text => `# ${text}`;
 export const cCommentMap = text => `/* ${text} */`;
 export const cppCommentMap = text => `// ${text}`;
@@ -52,7 +51,7 @@ export const mysqlCommentMap = text => `-- ${text}`;
 export const shellEchoMap = text => `echo "${text}"`;
 export const vbCommentMap = text => `' ${text}`;
 
-// --- Master map for lookup ---
+// wraping into a object
 export const filterMap = {
   none: noneMap,
 

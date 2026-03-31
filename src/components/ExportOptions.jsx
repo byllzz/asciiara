@@ -1,7 +1,6 @@
 import React  from 'react'
 
 import {Copy , Share, Image } from 'lucide-react'
-// import {copyOutputResult} from '../utils/transformers';
 
 export default function ExportOptions({ output, setShowToast,  setHitDownload , settings }) {
   // copying to clipboard

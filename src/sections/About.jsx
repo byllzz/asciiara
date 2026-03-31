@@ -1,16 +1,9 @@
 import React from 'react'
 import lightbanner from '../assets/lightaboutbanner.png'
 import darkbanner from '../assets/darkaboutbanner.png'
-import { Plus } from 'lucide-react'
-import { BsGithub } from 'react-icons/bs';
+import { Plus } from 'lucide-react';
+import {links} from '../data/data'
 export default function About({ setShowSection, settings }) {
-  const socialLinks = [
-    {
-      id: 1, href: 'https://github.com/byllzz', icon: <BsGithub />
-    }
-  ];
-
-
   const handleToMain = () => {
     setShowSection('main');
   }
@@ -20,7 +13,7 @@ export default function About({ setShowSection, settings }) {
       className={`w-full h-137 overflow-y-auto relative ${settings.themeToggle === false ? 'text-red-900' : 'text-white'} flex flex-col items-center py-4`}
     >
       <button
-        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-53 right-10`}
+        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-60 right-10`}
         onClick={handleToMain}
       >
         <Plus className="rotate-45" size={20} />
@@ -255,16 +248,17 @@ export default function About({ setShowSection, settings }) {
             </p>
           </section>
           <section className="pt-4 mt-6 flex flex-col items-center justify-center">
-            {socialLinks.map(item => {
+            {links.map(item => {
               const IconComponent = item.icon;
               return (
                 <ul className="flex items-center justify-center gap-3">
                   <li key={item.id}>
                     <a
+                      target={item.target}
                       href={item.href}
                       className={`text-2xl hover:brightness-150 ${settings.themeToggle === false ? 'text-black' : 'text-white'}`}
                     >
-                      {IconComponent}
+                      <IconComponent size={27} />
                     </a>
                   </li>
                 </ul>

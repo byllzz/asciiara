@@ -1,6 +1,6 @@
 import { filterMap } from '../utils/asciiMap';
 
-// --- Text casing / formatting ---
+// options (main)
 export const renderFormattedText = (option, inputTxt) => {
   if (!inputTxt) return '';
   if (option === 'uppercase') return inputTxt.toUpperCase();
@@ -9,7 +9,7 @@ export const renderFormattedText = (option, inputTxt) => {
 };
 
 
-//   filters ---
+//   filters...
 export const withFilters = (filter, inputTxt) => {
   if (!inputTxt) return '';
   return filterMap[filter]?.(inputTxt) || inputTxt;

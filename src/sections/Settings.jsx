@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import lightbanner from '../assets/lightsettingsbanner.png';
 import darkbanner from '../assets/darksettingsbanner.png';
 import { Info, Plus, RotateCcw } from 'lucide-react';
-import { BsGithub } from 'react-icons/bs';
+import { links } from '../data/data';
 
 const SettingItem = ({ id, title, description, infoText, children, showInfo, onToggleInfo , settings }) => {
   const isActive = showInfo === id;
@@ -55,24 +55,11 @@ export default function Settings({
   settings,
   setSettings, }) {
 
-
-
-  const [showInfo, setShowInfo] = useState('');
-
-
+const [showInfo, setShowInfo] = useState('');
   // click logic on infoBtn
-  const handleToggleInfo = (id) => {
-    setShowInfo((prev) => (prev === id ? '' : id));
-  };
-
-  // data
-   const data = [
-      {
-        id: 1, href : 'https://github.com/byllzz' ,  icon: <BsGithub />
-      }
-    ];
-
-
+const handleToggleInfo = (id) => {
+  setShowInfo((prev) => (prev === id ? '' : id));
+};
 
 const handleToggle = (key) => {
   setSettings((prev) => ({
@@ -85,7 +72,7 @@ const handleToggle = (key) => {
     <div className="w-full h-137 overflow-y-auto relative text-white flex flex-col items-center py-4 bg-transparent scroll-smooth">
       {/* Close Button */}
       <button
-        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-53 right-10`}
+        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-60 right-10`}
         onClick={() => setShowSection('main')}
       >
         <Plus className="rotate-45" size={20} />
@@ -102,7 +89,7 @@ const handleToggle = (key) => {
         />
       </div>
 
-      {/* Main Settings Container */}
+      {/* all settings here*/}
       <div className="w-full max-w-xl px-6 space-y-12 pb-32 font-outfit">
         {/*sec-1 */}
         <section className="space-y-6">
@@ -213,7 +200,7 @@ const handleToggle = (key) => {
         </section>
 
         <section className="flex items-center flex-col gap-2 justify-center">
-          <h3 className="text-[18px] text-white">Theme Toggle</h3>
+          <h3 className={`text-[18px] ${settings.themeToggle === false ? "text-black" : "text-white"}`}>Theme Toggle</h3>
           <label className="relative inline-flex items-center cursor-pointer">
             <input
               type="checkbox"
@@ -268,16 +255,17 @@ const handleToggle = (key) => {
         </footer>
 
         <section className="pt-4 mt-6 flex flex-col items-center justify-center">
-          {data.map(item => {
+          {links.map(item => {
             const IconComponent = item.icon;
             return (
               <ul className="flex items-center justify-center gap-3">
                 <li key={item.id}>
                   <a
                     href={item.href}
+                    target={item.target}
                     className={`text-2xl hover:brightness-150 ${settings.themeToggle === false ? 'text-black' : 'text-white'}`}
                   >
-                    {IconComponent}
+                    <IconComponent size={27} />
                   </a>
                 </li>
               </ul>
