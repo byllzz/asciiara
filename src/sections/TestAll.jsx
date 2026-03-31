@@ -53,7 +53,7 @@ const PreviewCard = ({
 
       <div
         ref={cardRef}
-        className={`py-6  border px-3 my-3 ${settings.themeToggle === false ? 'bg-white ' : ' bg-zinx-950'}`}
+        className={`py-6  px-3 my-3 ${settings.themeToggle === false ? 'bg-white ' : ' bg-zinx-950'}`}
       >
         <pre
           className={`text-8xl whitespace-pre-wrap break-all font-mono ${settings.themeToggle === false ? 'text-black ' : 'text-white'}`}
