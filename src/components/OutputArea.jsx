@@ -7,7 +7,9 @@ export default function OutputArea({ output , settings , reff  }) {
       className={`${settings.themeToggle === false ? 'bg-white text-black ' : 'bg-zinc-950 text-white '} min-h-25  relative flex items-center justify-start pb-2 pt-4 pr-5 `}
     >
       {settings.watermark && (
-        <div className="absolute bottom-1.5 right-1 text-[10px] text-white">
+        <div
+          className={`absolute bottom-1.5 right-1 text-[10px] ${settings.themeToggle === false ? ' text-white ' : 'text-white '}`}
+        >
           <p>Generated via Asciiara</p>
         </div>
       )}
