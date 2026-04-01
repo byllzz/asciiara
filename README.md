@@ -63,7 +63,7 @@ Built for **creativity, speed, and precision** — all running entirely in the b
 
 ### Clone the Repository
 ```bash
-git clone [https://github.com/byllzz/asciiara.git](https://github.com/byllzz/asciiara.git)
+git clone https://github.com/byllzz/asciiara.git
 cd asciiara
 ```
 
