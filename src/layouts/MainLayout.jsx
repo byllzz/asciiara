@@ -89,6 +89,8 @@ export default function MainLayout({
           setHitDownload={setHitDownload}
           onDownload={saveImageToDisk}
           imageUrl={previewUrl}
+          setShowToast={setShowToast}
+          settings={settings}
         />
       )}
     </div>

@@ -15,7 +15,7 @@ export default function App() {
   const [settings, setSettings] = useLocalStorage('asciiara_settings', {
     fontSize: 54,
     mono: true,
-    autoCopy: true,
+    autoCopy: false,
     watermark: false,
     themeToggle: true,
   });

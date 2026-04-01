@@ -238,7 +238,7 @@ const handleToggle = (key) => {
               setSettings({
                 fontSize: 54,
                 mono: true,
-                autoCopy: true,
+                autoCopy: false,
                 watermark: false,
                 themeToggle: true,
               })
@@ -250,10 +250,10 @@ const handleToggle = (key) => {
 
           <div className="text-center space-y-1">
             <p className="text-[10px] text-zinc-600 font-mono uppercase tracking-[0.3em]">
-              Asciiara Engine v1.0.4
+              Asciiara
             </p>
             <p className="text-[9px] text-zinc-700 font-mono uppercase">
-              Handcrafted for the 2026 Web
+              Handcrafted Font Maps
             </p>
           </div>
         </footer>
