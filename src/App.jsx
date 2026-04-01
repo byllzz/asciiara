@@ -21,7 +21,7 @@ export default function App() {
   });
 
   const [inputTxt, setInputText] = useLocalStorage('asciiara_draft', 'Type Something cool.');
-  const [options, setOptions] = useLocalStorage('asciiara_last_filter', 'uppercase');
+  const [options, setOptions] = useLocalStorage('asciiara_last_filter', 'gothic');
 
   // all states
   const [showSection, setShowSection] = useLocalStorage('asciiara_section', 'main');
@@ -56,7 +56,7 @@ export default function App() {
 
   return (
     <div
-      className={`flex flex-col items-center w-full h-screen pt-2 gap-2 overflow-hidden relative transition-colors duration-500 ${
+      className={`flex flex-col items-center w-full h-screen md:pt-2 md:gap-2 overflow-auto md:overflow-auto relative transition-colors duration-500 ${
         settings.themeToggle ? 'bg-zinc-800' : 'bg-zinc-200'
       }`}
     >

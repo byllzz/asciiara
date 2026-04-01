@@ -2,19 +2,17 @@ import React from 'react'
 import lightbanner from '../assets/lightaboutbanner.png'
 import darkbanner from '../assets/darkaboutbanner.png'
 import { Plus } from 'lucide-react';
-import {links} from '../data/data'
+import Footer from '../components/Footer'
 export default function About({ setShowSection, settings }) {
-  const handleToMain = () => {
-    setShowSection('main');
-  }
+
 
   return (
     <div
       className={`w-full h-137 overflow-y-auto relative ${settings.themeToggle === false ? 'text-red-900' : 'text-white'} flex flex-col items-center py-4`}
     >
       <button
-        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-60 right-10`}
-        onClick={handleToMain}
+        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-63 right-15`}
+        onClick={() => setShowSection('main')}
       >
         <Plus className="rotate-45" size={20} />
       </button>
@@ -247,31 +245,7 @@ export default function About({ setShowSection, settings }) {
               experience. If you have an idea for a filter or spot a bug, reach out!
             </p>
           </section>
-          <section className="pt-4 mt-6 flex flex-col items-center justify-center">
-            {links.map(item => {
-              const IconComponent = item.icon;
-              return (
-                <ul className="flex items-center justify-center gap-3">
-                  <li key={item.id}>
-                    <a
-                      target={item.target}
-                      href={item.href}
-                      className={`text-2xl hover:brightness-150 ${settings.themeToggle === false ? 'text-black' : 'text-white'}`}
-                    >
-                      <IconComponent size={27} />
-                    </a>
-                  </li>
-                </ul>
-              );
-            })}
-
-            <button
-              onClick={handleToMain}
-              className="flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-4 transition-all relative top-10  border-zinc-800 bg-zinc-950 text-zinc-200 cursor-pointer"
-            >
-              Done
-            </button>
-          </section>
+          <Footer settings={settings} setShowSection={setShowSection} />
         </article>
       </div>
     </div>

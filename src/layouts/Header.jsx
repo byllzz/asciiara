@@ -20,18 +20,18 @@ export default function Header({
 
   return (
     <header
-      className={`font-outfit flex flex-col items-center w-full max-w-[525px] rounded-xl border py-2 px-4 transition-all duration-500 ${bgColor} ${textColor} shadow-xl`}
+      className={`font-outfit flex flex-col items-center w-full max-w-[525px] rounded-[8px] border  px-4 transition-all duration-500 ${bgColor} ${textColor} shadow-xl`}
     >
-      <div className="text-center mb-2">
-        <h3 className="text-lg font-bold tracking-tight">Asciiara Engine</h3>
-        <p className="text-[10px] uppercase tracking-[0.2em]  text-slate-200">
+      <div className="text-center mb-2 ">
+        <h3 className="text-lg font-bold font-outfit tracking-tight">Asciiara Engine</h3>
+        <p className="text-[14px] capitalize font-outfit text-slate-200">
           Text to ASCII Art Transformer
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 w-full relative bottom-1">
         {/* left side */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
           <Options
             options={options}
             setOptions={setOptions}
@@ -43,12 +43,14 @@ export default function Header({
         </div>
 
         {/* right side */}
-        <TextInput
-          textInput={inputTxt}
-          setInputText={setInputText}
-          setShowSection={setShowSection}
-          settings={settings}
-        />
+
+          <TextInput
+            textInput={inputTxt}
+            setInputText={setInputText}
+            setShowSection={setShowSection}
+            settings={settings}
+          />
+       
       </div>
     </header>
   );

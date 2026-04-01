@@ -1,26 +1,40 @@
-import React from 'react'
 
-export default function Options({options , setOptions , setShowSection , settings , output}) {
+import React from 'react';
+import {ASCII_FONTS} from '../data/fonts'
+
+export default function Options({ options, setOptions, setShowSection, settings, output }) {
+  const isOutputEmpty = !output || output.trim() === '';
+
   return (
-    <div className="flex flex-col items-start gap-1 w-full">
-      <label htmlFor="options" className="text-xs">
-        ASCII Art font:
+    <div className="flex flex-col items-start gap-1 w-full font-outfit">
+      <label htmlFor="options" className={`text-[11px] uppercase tracking-wider font-medium font-outfit mb-0.5 ${settings.themeToggle === false ? 'text-white' : 'text-white'}`}>
+        ASCII Art Font:
       </label>
+
       <select
         value={options}
-        disabled={!output || output.trim() === ''}
-        onChange={e => {
+        disabled={isOutputEmpty}
+        onChange={(e) => {
           setOptions(e.target.value);
           setShowSection('main');
         }}
         id="options"
-        className={`w-full border rounded-[4px] p-2
-          ${settings.themeToggle === false ? 'border-zinc-400 bg-white text-black' : 'border-zinc-900 bg-zinc-900/40 text-white'}  text-[14px] ${!output || output.trim() === "" ? 'cursor-not-allowed opacity-80' : "cursor-auto opacity-100"}`}
+        className={`w-full border-2 rounded-[5px] p-2.5 transition-all outline-none text-[14px]
+          ${settings.themeToggle === false
+            ? 'border-zinc-200 bg-white text-zinc-900 focus:border-blue-500'
+            : 'border-zinc-800 bg-zinc-900/50 text-white focus:border-blue-600'}
+          ${isOutputEmpty ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:border-zinc-500'}`}
       >
-        <option value="uppercase">Uppercase</option>
-        <option value="lowercase">Lowercase</option>
+        {ASCII_FONTS.map((group) => (
+          <optgroup key={group.group} label={group.group} className="bg-zinc-900 text-zinc-400">
+            {group.items.map((font) => (
+              <option key={font.value} value={font.value} className="text-white bg-zinc-900">
+                {font.label}
+              </option>
+            ))}
+          </optgroup>
+        ))}
       </select>
     </div>
   );
 }
-

@@ -1,172 +1,66 @@
-import React, { useRef } from 'react';
-import { renderFormattedText } from '../utils/transformers';
-import { Plus, Copy, Image } from 'lucide-react';
-import { toPng } from 'html-to-image';
-import lightbanner from '../assets/lighttestbanner.png'
-import darkbanner from '../assets/darktestbanner.png'
-import { TiTick } from 'react-icons/ti';
-import { links } from '../data/data'
-
-
-
-// previewCard
-const PreviewCard = ({
-  opt,
-  inputTxt,
-  setShowToast,
-  setOptions,
-  setShowSection,
-  settings,
-}) => {
-  const cardRef = useRef(null);
-  const textToCopy = renderFormattedText(opt, inputTxt);
-
-  const handleDownload = () => {
-    if (cardRef.current === null) return;
-
-    toPng(cardRef.current, { cacheBust: true })
-      .then(dataUrl => {
-        const link = document.createElement('a');
-        link.download = `asciiara-${opt}.png`;
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch(err => console.error('Image export failed:', err));
-  };
-
-  const handleCopy = () => {
-    if (!inputTxt || inputTxt.trim() === '') return;
-    navigator.clipboard.writeText(inputTxt);
-    setShowToast(true);
-  };
-
-  const handleUseFont = () => {
-    setOptions(opt);
-    setShowSection('main');
-  };
-
-  return (
-    <div className="mx-4 p-4 text-white border-b border-zinc-800">
-      <span className="text-xs uppercase text-blue-400 font-mono font-bold tracking-wider relative left-4">
-        {opt}
-      </span>
-
-      <div
-        ref={cardRef}
-        className={`py-6  px-3 my-3 ${settings.themeToggle === false ? 'bg-white ' : ' bg-zinx-950'}`}
-      >
-        <pre
-          className={`text-8xl whitespace-pre-wrap break-all font-mono ${settings.themeToggle === false ? 'text-black ' : 'text-white'}`}
-        >
-          {textToCopy || 'No input provided'}
-        </pre>
-      </div>
-
-      <div className="flex items-center gap-3 mt-4 relative left-4 ">
-        <button
-          onClick={() => {
-            handleCopy();
-          }}
-          className="flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-2.5 transition-all
-           border-zinc-700 bg-zinc-950 text-zinc-200 cursor-pointer hover:bg-zinc-900"
-        >
-          <Copy size={15} /> Copy
-        </button>
-
-        <button
-          // onClick={handleDownload}
-          onClick={handleDownload}
-          className="flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-2.5 transition-all
-           border-zinc-700 bg-zinc-950 text-zinc-200 cursor-pointer hover:bg-zinc-900"
-        >
-          <Image size={15} /> Save Image
-        </button>
-
-        <button
-          onClick={handleUseFont}
-          className="flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-2.5 transition-all
-           border-zinc-700 bg-zinc-950 text-zinc-200 cursor-pointer hover:bg-zinc-900"
-        >
-          <TiTick size={15} /> Use this font
-        </button>
-      </div>
-    </div>
-  );
-};
-
-//  TestAll
+import React from 'react';
+import { Plus } from 'lucide-react';
+import lightbanner from '../assets/lighttestbanner.png';
+import darkbanner from '../assets/darktestbanner.png';
+import { ASCII_FONTS } from '../data/fonts';
+import PreviewFont from '../components/PreviewFont';
+import Footer from '../components/Footer';
 export default function TestAll({ inputTxt, setShowSection, setShowToast, setOptions, settings }) {
-  // must update this whenever add a new option (as this shows only fonts those are in this array...)
-  const allOptions = ['uppercase', 'lowercase'];
-
-  const handleToMain = () => {
-    setShowSection('main');
-  };
-
+  // this calculates total fonts in array
+  const totalFonts = ASCII_FONTS.reduce((acc, group) => acc + group.items.length, 0);
   return (
-    <div className="w-full h-137 overflow-y-auto relative flex flex-col items-center pt-4 pb-30">
+    <div
+      className={`w-full h-137 overflow-y-auto relative flex flex-col items-center pb-32 transition-colors ${settings.themeToggle ? 'bg-zinc-950' : 'bg-white'}`}
+    >
+      {/*close btn */}
       <button
-        className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-60 right-10`}
+        className={`fixed top-63 right-15 z-50 cursor-pointer ${
+          settings.themeToggle ? '  text-white' : '  text-black'
+        }`}
         onClick={() => setShowSection('main')}
       >
         <Plus className="rotate-45" size={20} />
       </button>
 
-      <div className="flex flex-col items-center gap-2 max-w-xl mx-auto pt-5">
+      {/* banner */}
+      <div className="w-full max-w-2xl px-6 pt-10 text-center">
         <img
           src={settings.themeToggle ? darkbanner : lightbanner}
-          alt="Asciiara Testall fonts section banner"
-          loading="lazy"
-          draggable="false"
-          className="w-full h-auto max-h-[300px] object-cover  mb-8 select-none"
+          alt="Banner"
+          className="w-full h-48 object-contain mb-5"
         />
-        <h3
-          className={`${settings.themeToggle === false ? 'text-black' : 'text-white'} mt-4 text-[15px] font-outfit tracking-wide`}
-        >
-          Number of fonts : &nbsp; {allOptions.length}{' '}
-        </h3>
+        <div className="inline-block px-4 py-1 font-outfit mb-4">
+          <p className="text-blue-400 text-xs font-medium tracking-tigth uppercase">
+            Number of Fonts:&nbsp; {totalFonts} Fonts
+          </p>
+        </div>
       </div>
 
-      {/* all font card here  */}
-      <div className="grid w-full grid-cols-1 mt-5 ">
-        {allOptions.map(opt => (
-          <PreviewCard
-            key={opt}
-            opt={opt}
-            inputTxt={inputTxt}
-            setShowToast={setShowToast}
-            setOptions={setOptions}
-            setShowSection={setShowSection}
-            settings={settings}
-          />
+      {/* all fonts  */}
+      <div className="w-full max-w-full flex flex-col mt-6">
+        {ASCII_FONTS.map(group => (
+          <React.Fragment key={group.group}>
+            <div
+              className={`px-4 py-2 text-xs font-black uppercase font-outfit flex items-center gap-1 ${settings.themeToggle ? 'text-white' : 'text-black'} mt-8`}
+            >
+              Group<span className="relative bottom-[1.5px]">:</span> {group.group}
+            </div>
+
+            {group.items.map(font => (
+              <PreviewFont
+                key={font.value}
+                opt={font.value}
+                inputTxt={inputTxt}
+                setShowToast={setShowToast}
+                setOptions={setOptions}
+                setShowSection={setShowSection}
+                settings={settings}
+              />
+            ))}
+          </React.Fragment>
         ))}
       </div>
-
-      <section className="pt-4 mt-25 flex flex-col items-center justify-center">
-        {links.map(item => {
-          const IconComponent = item.icon;
-          return (
-            <ul className="flex items-center justify-center gap-3">
-              <li key={item.id}>
-                <a
-                  href={item.href}
-                  target={item.target}
-                  className={`text-2xl hover:brightness-150 ${settings.themeToggle === false ? 'text-black' : 'text-white'}`}
-                >
-                  <IconComponent size={27} />
-                </a>
-              </li>
-            </ul>
-          );
-        })}
-
-        <button
-          onClick={handleToMain}
-          className="flex items-center justify-center text-[14px] gap-2 border rounded-[8px] py-[5px] px-4 transition-all relative top-10  border-zinc-800 bg-zinc-950 text-zinc-200 cursor-pointer"
-        >
-          Done
-        </button>
-      </section>
+      <Footer settings={settings} setShowSection={setShowSection} />
     </div>
   );
 }

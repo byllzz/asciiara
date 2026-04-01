@@ -47,7 +47,7 @@ export default function MainLayout({
   };
 
   return (
-    <div className="w-full h-full py-6 px-4 md:px-7 flex flex-col items-start">
+    <div className="w-full h-full py-6 px-4 md:px-7 flex flex-col items-start overflow-x-auto">
       {/* output area*/}
       <div className=" flex justify-center mb-10 mt-5 relative right-2">
         <OutputArea output={withFiltersData} settings={settings} reff={outputRef} />

@@ -8,7 +8,7 @@ export default function OutputArea({ output , settings , reff  }) {
     >
       {settings.watermark && (
         <div
-          className={`absolute bottom-1.5 right-1 text-[10px] ${settings.themeToggle === false ? ' text-black ' : 'text-white'}`}
+          className={`absolute bottom-0.5 right-1 text-[10px] ${settings.themeToggle === false ? ' text-black ' : 'text-white'}`}
         >
           <p>Generated via Asciiara</p>
         </div>

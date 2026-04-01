@@ -1,16 +1,14 @@
-import { filterMap } from '../utils/asciiMap';
+import { filterMap } from '../utils/filterMap';
+import { fontMap } from '../utils/fontMap';
 
-// options (main)
+// fonts options
 export const renderFormattedText = (option, inputTxt) => {
   if (!inputTxt) return '';
-  if (option === 'uppercase') return inputTxt.toUpperCase();
-  if (option === 'lowercase') return inputTxt.toLowerCase();
-  return inputTxt;
+  return fontMap[option] ? fontMap[option](inputTxt) : inputTxt;
 };
 
-
-//   filters...
+// filters options
 export const withFilters = (filter, inputTxt) => {
-  if (!inputTxt) return '';
+  if (!inputTxt || !filter || filter === 'none') return inputTxt || '';
   return filterMap[filter]?.(inputTxt) || inputTxt;
 };
