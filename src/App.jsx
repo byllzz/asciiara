@@ -21,7 +21,7 @@ export default function App() {
   });
 
   const [inputTxt, setInputText] = useLocalStorage('asciiara_draft', 'Type Something cool.');
-  const [options, setOptions] = useLocalStorage('asciiara_last_filter', 'gothic');
+  const [options, setOptions] = useLocalStorage('asciiara_last_filter', 'script');
 
   // all states
   const [showSection, setShowSection] = useLocalStorage('asciiara_section', 'main');

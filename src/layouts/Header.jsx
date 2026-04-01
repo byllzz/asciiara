@@ -23,7 +23,7 @@ export default function Header({
       className={`font-outfit flex flex-col items-center w-full max-w-[525px] rounded-[8px] border  px-4 transition-all duration-500 ${bgColor} ${textColor} shadow-xl`}
     >
       <div className="text-center mb-2 ">
-        <h3 className="text-lg font-bold font-outfit tracking-tight">Asciiara Engine</h3>
+        <h3 className="text-lg font-bold font-outfit tracking-tight">Asciiara </h3>
         <p className="text-[14px] capitalize font-outfit text-slate-200">
           Text to ASCII Art Transformer
         </p>
@@ -50,7 +50,7 @@ export default function Header({
             setShowSection={setShowSection}
             settings={settings}
           />
-       
+
       </div>
     </header>
   );
