@@ -44,7 +44,7 @@ Built for **creativity, speed, and precision** — all running entirely in the b
 
 ---
 
-## ⚙️ How It Works
+##  How It Works
 
 - Uses a **custom font mapping engine** (O(1) lookups) for instantaneous text transformation without relying on heavy external libraries.
 - Renders complex multi-line string matrices perfectly using responsive whitespace handling.
