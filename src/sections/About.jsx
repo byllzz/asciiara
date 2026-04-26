@@ -8,7 +8,7 @@ export default function About({ setShowSection, settings }) {
 
   return (
     <div
-      className={`w-full h-137 overflow-y-auto relative ${settings.themeToggle === false ? 'text-red-900' : 'text-white'} flex flex-col items-center py-4`}
+      className={`w-full h-screen pb-50 overflow-y-auto relative ${settings.themeToggle === false ? 'text-red-900' : 'text-white'} flex flex-col items-center py-4`}
     >
       <button
         className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-63 right-15`}

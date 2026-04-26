@@ -10,7 +10,7 @@ export default function TestAll({ inputTxt, setShowSection, setShowToast, setOpt
   const totalFonts = ASCII_FONTS.reduce((acc, group) => acc + group.items.length, 0);
   return (
     <div
-      className={`w-full h-137 overflow-y-auto relative flex flex-col items-center pb-32 transition-colors ${settings.themeToggle ? 'bg-zinc-950' : 'bg-white'}`}
+      className={`w-full h-screen pb-100 overflow-y-auto relative flex flex-col items-center  transition-colors ${settings.themeToggle ? 'bg-zinc-950' : 'bg-white'}`}
     >
       {/*close btn */}
       <button

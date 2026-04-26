@@ -69,7 +69,7 @@ const handleToggle = (key) => {
 };
 
   return (
-    <div className="w-full h-137 overflow-y-auto relative text-white flex flex-col items-center py-4 bg-transparent scroll-smooth">
+    <div className="w-full h-screen pb-50 overflow-y-auto relative text-white flex flex-col items-center py-4 bg-transparent scroll-smooth">
       {/* Close Button */}
       <button
         className={`${settings.themeToggle === false ? 'text-black' : 'text-white'}  rounded-full cursor-pointer fixed top-63 right-15`}
