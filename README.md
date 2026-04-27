@@ -1,6 +1,6 @@
-# <a href="https://asciiara.vercel.app" target="_blank">Asciiara - Text to hand made ASCII Fonts</a>
+# <a href="https://asciiara.vercel.app" target="_blank">Asciiara - Text to Hand-Made Fonts Converter</a>
 
-**Asciiara** is a modern, interactive web application that transforms standard text into stunning (Hand made) ASCII Fonts. Browse through 22+ custom hand-crafted fonts, test them all in a responsive gallery, and export your creations directly to high-quality PNGs.
+**Asciiara** is a modern, interactive web application that transforms standard text into stunning hand-crafted ASCII & Unicode fonts. Browse through 35+ custom fonts across 5 style groups, apply creative filters, test them all in a responsive gallery, and export your creations directly to high-quality PNGs.
 
 Built for **creativity, speed, and precision** — all running entirely in the browser.
 
@@ -27,10 +27,12 @@ Built for **creativity, speed, and precision** — all running entirely in the b
 
 ---
 
-#  Features
+# Features
 
 <p align="left">
-✔️ 22+ Custom Hand-Crafted ASCII & Unicode Fonts<br>
+✔️ 35+ Custom Hand-Crafted ASCII & Unicode Fonts<br>
+✔️ 5 Font Groups — Artistic, Classic ASCII, Stylized, Structured, Text Styles<br>
+✔️ 28+ Filters — Color, Flip, Style & Code Comment filters<br>
 ✔️ Instant Text-to-ASCII Transformation<br>
 ✔️ High-Fidelity PNG Export with Loading States<br>
 ✔️ 'Test All' Gallery View for Quick Font Comparisons<br>
@@ -44,9 +46,33 @@ Built for **creativity, speed, and precision** — all running entirely in the b
 
 ---
 
-##  How It Works
+## Font Groups
+
+| Group | Fonts |
+|---|---|
+| **Artistic** | Epic, Graffiti, Isometric, Ogre, Calvin S, Chunky, Fire, Retrowave, Glitch, Matrix, Pyramid, Mirror |
+| **Classic ASCII** | Big, Blocky, Slant, Shadow, Block, Bubble, Digital, Wave, Scanline |
+| **Stylized** | Script, Mini, Small, Ivrit, Gothic, Banner, Braille |
+| **Structured** | Circuit, Neon, Stencil, Typewriter |
+| **Text Styles** | Standard, Uppercase, Lowercase, Capitalize |
+
+---
+
+## Filters
+
+| Category | Filters |
+|---|---|
+| **Color** | Chromostereopsis 1 & 2, Rainbow 1–3, Gold, Fire, Cyan Magenta, Matrix |
+| **Flip** | Flip Vertically, Flip Horizontally, Flip Both |
+| **Style** | Sleek, Bold, Italic, Strikethrough, Underline |
+| **Code Comments** | Bash, C, C++, Fortran, MySQL, Shell Echo, Visual Basic, Python Docstring, HTML, YAML, JSON Wrap, SQL Print, Lua, Ruby |
+
+---
+
+## How It Works
 
 - Uses a **custom font mapping engine** (O(1) lookups) for instantaneous text transformation without relying on heavy external libraries.
+- Every font is **hand-authored** — multi-line 3×3 character grids, box-drawing matrices, unicode glyph maps, and pattern-based effects, all written by hand with no figlet or ASCII library involved.
 - Renders complex multi-line string matrices perfectly using responsive whitespace handling.
 - State is managed and persisted globally via **custom LocalStorage hooks**, ensuring you never lose your work on refresh.
 - Image generation is handled dynamically, injecting theme-aware backgrounds before capturing the DOM node for perfect PNG exports.
@@ -54,7 +80,7 @@ Built for **creativity, speed, and precision** — all running entirely in the b
 
 ---
 
-##  Installation & Setup
+## Installation & Setup
 
 ### Requirements
 - Node.js installed on your machine
@@ -71,6 +97,6 @@ cd asciiara
 
 This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE) file for details.
 
-# Feedback 
+# Feedback
 
 Reach out at **bilalmlkdev@gmail.com**. If you like this project, please ⭐ star the repo - it motivates future updates!
