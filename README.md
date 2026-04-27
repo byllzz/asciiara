@@ -33,7 +33,7 @@ Built for **creativity, speed, and precision** — all running entirely in the b
 ✔️ 35+ Custom Hand-Crafted ASCII & Unicode Fonts<br>
 ✔️ 5 Font Groups — Artistic, Classic ASCII, Stylized, Structured, Text Styles<br>
 ✔️ 28+ Filters — Color, Flip, Style & Code Comment filters<br>
-✔️ Instant Text-to-ASCII Transformation<br>
+✔️ Instant Text-to-ASCII (Hand Made Fonts) Transformation<br>
 ✔️ High-Fidelity PNG Export with Loading States<br>
 ✔️ 'Test All' Gallery View for Quick Font Comparisons<br>
 ✔️ Persistent Local Storage (Remembers settings & text drafts)<br>
